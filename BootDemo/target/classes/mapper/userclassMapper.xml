@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.UserClassDao">
+	<!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！ -->
+	<resultMap id="BaseResultMap" type="com.test.po.UserClass">
+		<id column="class_id" jdbcType="INTEGER" property="classid" />
+		<result column="class_name" jdbcType="VARCHAR"
+			property="classname" />
+	</resultMap>
+
+	<insert id="insertUserClass"
+		parameterType="com.test.po.UserClass" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into class
+		(class_name) values
+		(#{classname})
+	</insert>
+	<select id="selectbyId" resultMap="BaseResultMap">
+		select * from class where class_id = #{classid}
+	</select>
+</mapper>
